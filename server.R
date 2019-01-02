@@ -16,22 +16,44 @@ function(input, output) {
     # let the user specify what type of sodawater they drink
     fixed_cost <- input$fixed_cost
     perunit_cost <- input$perunit_cost
-    if (input$perunit_type == "liter") {
+    if (input$perunit_type == "1-liter bottle") {
       size = 1000
-    } else if (input$perunit_type == "twoliter") {
+    } else if (input$perunit_type == "2-liter bottle") {
       size = 2000
-    } else { # input$perunit_type == "can"
+    } else { # input$perunit_type == "750mL can"
       size = 750
     }
     
-    # calculate the two lines
-    
+    # calculate the lines and breakeven point (assumes SodaStream bottles are 2L)
+    perunit_slope = (perunit_cost / size) * 2000
+    breakeven_x = fixed_cost / perunit_slope
+    breakeven_y = fixed_cost
+    plot_title = paste("You'll break even after making ",
+                       as.character(ceiling(breakeven_x)),
+                       " 2L bottles",
+                       sep = "")
+    df = data.frame(x = c(breakeven_x),
+                    y = c(breakeven_y))
     
     # actual plot
-    ggplot() +
-      geom_line() +
-      labs(title = "When will you break even?",
-           x = "Number of drinks",
-           y = "Price ($)")
+    ggplot(data = df,
+           aes(x = x,
+               y = y)) +
+      geom_abline(slope = 0,
+                  intercept = fixed_cost,
+                  color = "red",
+                  size = 1) +
+      geom_abline(slope = perunit_slope,
+                  intercept = 0,
+                  color = "black",
+                  size = 1) +
+      geom_point(color = "blue",
+                 size = 5) +
+      xlim(0, 100) +
+      ylim(0, 100) +
+      labs(title = plot_title,
+           x = "Number of 2L bottles",
+           y = "Cost ($)")
   })
+  
 }
