@@ -20,8 +20,8 @@ function(input, output) {
       size = 1000
     } else if (input$perunit_type == "2-liter bottle") {
       size = 2000
-    } else { # input$perunit_type == "750mL can"
-      size = 750
+    } else { # input$perunit_type == "12 oz can"
+      size = 350
     }
     
     # calculate the lines and breakeven point (assumes SodaStream bottles are 2L)

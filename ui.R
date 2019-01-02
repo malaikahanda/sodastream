@@ -28,7 +28,7 @@ ui <- fluidPage(
       
       selectInput(inputId = "perunit_type",
                   label = "What size was the soda water you used to buy?",
-                  choices = c("1-liter bottle", "2-liter bottle", "750mL can"),
+                  choices = c("1-liter bottle", "2-liter bottle", "12 ozcan"),
                   selected = "1-liter bottle")
       
     ),
