@@ -32,10 +32,17 @@ function(input, output) {
     refill_slope = refill_cost / 30
     breakeven_x = fixed_cost / (perunit_slope - refill_slope)
     breakeven_y = breakeven_x * perunit_slope
-    plot_title = paste("You'll break even after making ",
-                       as.character(ceiling(breakeven_x)),
-                       " 2L bottles",
-                       sep = "")
+    
+    # make the plot things
+    if (breakeven_x > 0) {
+      plot_title = paste("You'll break even after making ",
+                         as.character(ceiling(breakeven_x)),
+                         " 2L bottles",
+                         sep = "")
+    } else {
+      plot_title = "You'll never break even"
+    }
+
     df = data.frame(x = c(breakeven_x),
                     y = c(breakeven_y))
     
