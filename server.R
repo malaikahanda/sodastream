@@ -4,6 +4,8 @@
 # calls rely on user input, which is accessed via input$___                   #       
 ###############################################################################
 
+# https://www.reddit.com/r/dataisbeautiful/comments/a9ups9/cost_of_owning_a_sodastream_vs_buying_cans_of/
+
 # load the libraries
 library(tidyverse)
 
@@ -16,6 +18,7 @@ function(input, output) {
     # let the user specify what type of sodawater they drink
     fixed_cost <- input$fixed_cost
     perunit_cost <- input$perunit_cost
+    refill_cost <- input$refill_cost
     if (input$perunit_type == "1-liter bottle") {
       size = 1000
     } else if (input$perunit_type == "2-liter bottle") {
@@ -26,8 +29,9 @@ function(input, output) {
     
     # calculate the lines and breakeven point (assumes SodaStream bottles are 2L)
     perunit_slope = (perunit_cost / size) * 2000
-    breakeven_x = fixed_cost / perunit_slope
-    breakeven_y = fixed_cost
+    refill_slope = refill_cost / 30
+    breakeven_x = fixed_cost / (perunit_slope - refill_slope)
+    breakeven_y = breakeven_x * perunit_slope
     plot_title = paste("You'll break even after making ",
                        as.character(ceiling(breakeven_x)),
                        " 2L bottles",
@@ -39,7 +43,7 @@ function(input, output) {
     ggplot(data = df,
            aes(x = x,
                y = y)) +
-      geom_abline(slope = 0,
+      geom_abline(slope = refill_slope,
                   intercept = fixed_cost,
                   color = "red",
                   size = 1) +
