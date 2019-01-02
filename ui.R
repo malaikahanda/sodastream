@@ -29,13 +29,13 @@ ui <- fluidPage(
       selectInput(inputId = "perunit_type",
                   label = "What size was the soda water you used to buy?",
                   choices = c("1-liter bottle", "2-liter bottle", "12 oz can"),
-                  selected = "1-liter bottle"),
+                  selected = "12 oz can"),
       
       sliderInput(inputId = "perunit_cost",
                   label = "How much did you pay for a can or bottle of soda water?",
                   min = 0,
                   max = 5,
-                  value = 2.5,
+                  value = .8,
                   step = 0.1)
       
     ),
