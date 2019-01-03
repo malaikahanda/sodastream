@@ -15,8 +15,8 @@ ui <- fluidPage(
       sliderInput(inputId = "fixed_cost",
                   label = "How much did you spend on your SodaStream?",
                   min = 0,
-                  max = 50,
-                  value = 18,
+                  max = 150,
+                  value = 47,
                   step = 1),
       
       sliderInput(inputId = "refill_cost",

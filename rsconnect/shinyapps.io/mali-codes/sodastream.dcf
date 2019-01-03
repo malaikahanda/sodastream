@@ -5,6 +5,6 @@ account: mali-codes
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 625444
-bundleId: 1792421
+bundleId: 1793974
 url: https://mali-codes.shinyapps.io/sodastream/
-when: 1546410008.10627
+when: 1546473011.85351

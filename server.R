@@ -61,7 +61,7 @@ function(input, output) {
       geom_point(color = "blue",
                  size = 5) +
       xlim(0, 100) +
-      ylim(0, 100) +
+      ylim(0, 150) +
       labs(title = plot_title,
            x = "Number of 2L bottles",
            y = "Cost ($)")
